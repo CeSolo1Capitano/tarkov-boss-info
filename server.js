@@ -54,13 +54,10 @@ function onMessageHandler (target, context, msg, self) {
 
 // Function called when the "dice" command is issued
 function checkBoss (name) {
-console.log(name)
     for (let index = 0; index < arrayInfo.maps.length; index++) {
         const element = arrayInfo.maps[index];
         const maplower = element.name.toLowerCase();
 
-        console.log(maplower)
-        console.log(maplower == name)
         
         if (maplower.includes(name)) {
           var infoPush = [];
@@ -76,7 +73,6 @@ console.log(name)
             infoPush.push(bosses.name+ ' spawnChance: '+ bosses.spawnChance + ',  spawnLocations: '+ spawnLoc.join())
             
           }
-          console.log(infoPush)
           return infoPush.join();
         } else {
           for (let index = 0; index < element.bosses.length; index++) {
