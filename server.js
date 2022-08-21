@@ -12,7 +12,6 @@ const opts = {
   },
   channels: [
     'primo_danno',
-    'scrotobeggins'
   ],
   connection: {
     reconnect: true
@@ -56,11 +55,13 @@ function onMessageHandler (target, context, msg, self) {
 // Function called when the "dice" command is issued
 function checkBoss (name) {
   var returnString = "";
+  var arrayCreated = [];
     for (let index = 0; index < arrayInfo.maps.length; index++) {
         const elements = arrayInfo.maps[index];
         const maplower = elements.name.toLowerCase();
 
         if (!maplower.includes(name)) {
+          
           
 
           for (let index = 0; index < elements.bosses.length; index++) {
@@ -69,27 +70,22 @@ function checkBoss (name) {
             name = name.toLowerCase();
 
             if (bossLower.includes(name)) {
-                var nameMaps = [];
+                
+                var mapsArray = [];
                 const spawnLoc = [];
                 const spawnPercent = (bosses.spawnChance * 100) + '%';
 
-                console.log(elements)
+                //console.log(elements)
+
+                mapsArray.push(elements.name)
+
                 for (let index = 0; index < bosses.spawnLocations.length; index++) {
                     spawnLoc.push(bosses.spawnLocations[index].name);
                     
                 }
-                nameMaps.push(bosses.name + ' spawn maps: ' + elements.name + ', spawnChance: '+ spawnPercent + ' spawnLocations: '+ spawnLoc.join());
+                arrayCreated.push('map: ' + elements.name + ', chance to spawn: '+ spawnPercent + ', spawn locations: '+ spawnLoc.join()+', ');
 
-                returnString = nameMaps.join()
-            } else if (bossLower.includes(name)) {
-              var nameMaps = elements.name;
-              const spawnLoc = [];
-              const spawnPercent = (bosses.spawnChance * 100) + '%'
-              for (let index = 0; index < bosses.spawnLocations.length; index++) {
-                  spawnLoc.push(bosses.spawnLocations[index].name);
-                  
-              }
-              returnString =  bosses.name + ' spawn maps: ' + nameMaps + ', spawnChance: '+ spawnPercent + ' spawnLocations: '+ spawnLoc.join();
+                returnString = bosses.name +' - '+ arrayCreated.join()
             }
           }
         } else {
@@ -116,9 +112,7 @@ function checkBoss (name) {
 }
 
 // Called every time the bot connects to Twitch chat
-function onConnectedHandler (addr, port) {
-    console.log(`* Connected to ${addr}:${port}`);
-  
+function onConnectedHandler (addr, port) {  
 
     const query = gql`
     {
