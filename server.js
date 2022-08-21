@@ -45,9 +45,8 @@ function onMessageHandler (target, context, msg, self) {
     var nameBoss = commandName.split(' ')[1];
     const num = checkBoss(nameBoss);
     client.say(target, num);
-    console.log(`* Executed ${commandName} command`);
   } else {
-    console.log(`* Unknown command ${commandName}`);
+
   }
 }
 
@@ -63,8 +62,6 @@ function checkBoss (name) {
             var bossLower = bosses.name.toLowerCase();
             name = name.toLowerCase();
 
-            console.log(bossLower)
-
             if (bossLower.includes(name)) {
                 var nameMaps = element.name;
                 const spawnLoc = [];
@@ -72,7 +69,6 @@ function checkBoss (name) {
                     spawnLoc.push(bosses.spawnLocations[index].name);
                     
                 }
-                console.log(bosses)
                 return bosses.name + ' spawn maps: ' + nameMaps + ', spawnChance: '+ bosses.spawnChance + ' spawnLocations: '+ spawnLoc.join();
             }
             
