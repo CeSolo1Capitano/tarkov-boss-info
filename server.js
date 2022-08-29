@@ -12,6 +12,7 @@ const opts = {
   },
   channels: [
     'primo_danno',
+    'cfrBot'
   ],
   connection: {
     reconnect: true
@@ -112,7 +113,7 @@ function checkBoss (name) {
 }
 
 // Called every time the bot connects to Twitch chat
-function onConnectedHandler (addr, port) {  
+function onConnectedHandler (addr, port) {
 
     const query = gql`
     {
